@@ -65,6 +65,6 @@
 
 5. Error Handling
    1. In case of request data doesn’t meet the required game specification, server should return HTTP
-      Code 400 and JSON exception payload ‘{ “error”:”<readable text massage describe the error>”}’
+      Code 400 and JSON exception payload `{ “error”:”<readable text massage describe the error>”}`
    2. In other server related errors, server should return HTTP Code 500 and JSON exception payload
-      ‘{ “error”:”<readable text massage describe the error>”}’
+      `{ “error”:”<readable text massage describe the error>”}`
