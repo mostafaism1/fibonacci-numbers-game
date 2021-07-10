@@ -60,4 +60,11 @@ public class DefaultGameService implements GameService {
         return true;
     }
 
+    @Override
+    public Player getOnTurnPlayer(UUID gameCode) {
+        Game game = gameRepository.getByGameCode(gameCode)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid game code"));
+        return game.getOnTurnPlayer();
+    }
+
 }
