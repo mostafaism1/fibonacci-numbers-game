@@ -3,9 +3,9 @@ package mostafaism.com.github.fibonaccinumbersgame.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import mostafaism.com.github.fibonaccinumbersgame.model.entity.GamePlayer;
+import mostafaism.com.github.fibonaccinumbersgame.model.entity.Player;
 
 @Repository
-public interface GamePlayerRepository extends CrudRepository<GamePlayer, Long> {
+public interface PlayerRepository extends CrudRepository<Player, Long> {
 
 }

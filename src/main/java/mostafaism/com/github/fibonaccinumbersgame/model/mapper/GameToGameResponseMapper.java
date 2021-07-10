@@ -16,8 +16,8 @@ public class GameToGameResponseMapper implements Function<Game, GameResponse> {
     public GameResponse apply(Game g) {
         return g == null ? null
                 : new GameResponse(g.getGameCode(),
-                        g.getGamePlayers().stream().map(
-                                gamePlayer -> new PlayerCodeDto(gamePlayer.getPlayerName(), gamePlayer.getPlayerCode()))
+                        g.getPlayers().stream()
+                                .map(player -> new PlayerCodeDto(player.getPlayerName(), player.getPlayerCode()))
                                 .collect(Collectors.toList()));
     }
 

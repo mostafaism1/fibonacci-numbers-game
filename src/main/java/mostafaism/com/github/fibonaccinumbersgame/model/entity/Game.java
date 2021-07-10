@@ -40,7 +40,7 @@ public class Game {
     private int turn;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "game", cascade = CascadeType.ALL)
-    private List<GamePlayer> gamePlayers;
+    private List<Player> players;
 
     @Column(name = "is_ended")
     private boolean isEnded;

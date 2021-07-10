@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import mostafaism.com.github.fibonaccinumbersgame.exception.MaximumGamesLimitReachedException;
 import mostafaism.com.github.fibonaccinumbersgame.model.entity.Game;
-import mostafaism.com.github.fibonaccinumbersgame.model.entity.GamePlayer;
+import mostafaism.com.github.fibonaccinumbersgame.model.entity.Player;
 import mostafaism.com.github.fibonaccinumbersgame.model.request.CreateGameRequest;
 import mostafaism.com.github.fibonaccinumbersgame.repository.GameRepository;
 
@@ -22,7 +22,7 @@ public class DefaultGameService implements GameService {
 
     private static final int MAXIMUM_ACTIVE_GAMES = 100;
     private final GameRepository gameRepository;
-    private final GamePlayerService gamePlayerService;
+    private final PlayerService playerService;
 
     @Override
     public Game createGame(CreateGameRequest createGameRequest) {
@@ -30,8 +30,8 @@ public class DefaultGameService implements GameService {
             throw new MaximumGamesLimitReachedException();
         }
         final Game game = createNewGame();
-        List<GamePlayer> gamePlayers = createGamePlayers(game, createGameRequest.getPlayers());
-        game.setGamePlayers(gamePlayers);
+        List<Player> players = createPlayers(game, createGameRequest.getPlayers());
+        game.setPlayers(players);
         return gameRepository.save(game);
     }
 
@@ -40,8 +40,8 @@ public class DefaultGameService implements GameService {
         return gameRepository.save(game);
     }
 
-    private List<GamePlayer> createGamePlayers(Game game, List<String> playerNames) {
-        return playerNames.stream().map(playerName -> gamePlayerService.create(game, playerName))
+    private List<Player> createPlayers(Game game, List<String> playerNames) {
+        return playerNames.stream().map(playerName -> playerService.create(game, playerName))
                 .collect(Collectors.toList());
     }
 

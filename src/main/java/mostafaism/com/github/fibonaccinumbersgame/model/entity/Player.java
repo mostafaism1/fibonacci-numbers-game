@@ -21,12 +21,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "game_player")
+@Table(name = "player")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class GamePlayer {
+public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

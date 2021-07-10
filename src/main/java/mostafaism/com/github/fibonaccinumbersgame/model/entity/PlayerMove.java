@@ -34,8 +34,8 @@ public class PlayerMove {
     private int turn;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "game_player_id")
-    private GamePlayer gamePlayer;
+    @JoinColumn(name = "player_id")
+    private Player player;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "move_id")
