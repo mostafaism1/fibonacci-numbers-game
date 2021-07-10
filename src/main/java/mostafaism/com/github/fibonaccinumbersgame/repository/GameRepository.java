@@ -1,5 +1,6 @@
 package mostafaism.com.github.fibonaccinumbersgame.repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.repository.CrudRepository;
@@ -13,5 +14,7 @@ public interface GameRepository extends CrudRepository<Game, Long> {
     int countByIsEnded(boolean isEnded);
 
     void deleteByGameCode(UUID gameCode);
+
+    Optional<Game> getByGameCode(UUID gameCode);
 
 }
