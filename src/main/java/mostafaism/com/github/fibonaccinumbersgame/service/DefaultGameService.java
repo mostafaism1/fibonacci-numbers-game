@@ -32,6 +32,7 @@ public class DefaultGameService implements GameService {
         final Game game = createNewGame();
         List<Player> players = createPlayers(game, createGameRequest.getPlayers());
         game.setPlayers(players);
+        game.setOnTurnPlayer(players.get(0));
         return gameRepository.save(game);
     }
 
