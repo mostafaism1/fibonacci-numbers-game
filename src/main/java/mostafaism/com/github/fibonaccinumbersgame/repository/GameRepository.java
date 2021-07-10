@@ -8,4 +8,6 @@ import mostafaism.com.github.fibonaccinumbersgame.model.entity.Game;
 @Repository
 public interface GameRepository extends CrudRepository<Game, Long> {
 
+    int countByIsEnded(boolean isEnded);
+
 }
