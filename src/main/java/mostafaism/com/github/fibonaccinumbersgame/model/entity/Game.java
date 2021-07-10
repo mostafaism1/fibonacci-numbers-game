@@ -3,6 +3,7 @@ package mostafaism.com.github.fibonaccinumbersgame.model.entity;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,7 +39,7 @@ public class Game {
     @Column(name = "turn")
     private int turn;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "game")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "game", cascade = CascadeType.ALL)
     private List<GamePlayer> gamePlayers;
 
     @Column(name = "is_ended")
