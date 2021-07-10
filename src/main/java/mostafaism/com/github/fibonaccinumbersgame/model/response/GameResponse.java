@@ -6,7 +6,7 @@ import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import mostafaism.com.github.fibonaccinumbersgame.model.dto.PlayerCode;
+import mostafaism.com.github.fibonaccinumbersgame.model.dto.PlayerCodeDto;
 
 @Data
 @AllArgsConstructor
@@ -14,6 +14,6 @@ import mostafaism.com.github.fibonaccinumbersgame.model.dto.PlayerCode;
 public class GameResponse {
 
     private UUID gameCode;
-    private List<PlayerCode> playerCodes;
+    private List<PlayerCodeDto> playerCodes;
 
 }
