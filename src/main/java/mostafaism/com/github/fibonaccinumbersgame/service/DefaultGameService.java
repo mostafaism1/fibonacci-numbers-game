@@ -12,7 +12,6 @@ import lombok.AllArgsConstructor;
 import mostafaism.com.github.fibonaccinumbersgame.exception.MaximumGamesLimitReachedException;
 import mostafaism.com.github.fibonaccinumbersgame.model.entity.Game;
 import mostafaism.com.github.fibonaccinumbersgame.model.entity.GamePlayer;
-import mostafaism.com.github.fibonaccinumbersgame.model.entity.Player;
 import mostafaism.com.github.fibonaccinumbersgame.model.request.CreateGameRequest;
 import mostafaism.com.github.fibonaccinumbersgame.repository.GameRepository;
 
@@ -23,7 +22,6 @@ public class DefaultGameService implements GameService {
 
     private static final int MAXIMUM_ACTIVE_GAMES = 100;
     private final GameRepository gameRepository;
-    private final PlayerService playerService;
     private final GamePlayerService gamePlayerService;
 
     @Override
@@ -32,8 +30,7 @@ public class DefaultGameService implements GameService {
             throw new MaximumGamesLimitReachedException();
         }
         final Game game = createNewGame();
-        List<Player> players = createOrGetExistingPlayers(createGameRequest.getPlayers());
-        List<GamePlayer> gamePlayers = createGamePlayers(game, players);
+        List<GamePlayer> gamePlayers = createGamePlayers(game, createGameRequest.getPlayers());
         game.setGamePlayers(gamePlayers);
         return gameRepository.save(game);
     }
@@ -43,12 +40,9 @@ public class DefaultGameService implements GameService {
         return gameRepository.save(game);
     }
 
-    private List<Player> createOrGetExistingPlayers(List<String> players) {
-        return players.stream().map(playerService::createOrGetExisting).collect(Collectors.toList());
-    }
-
-    private List<GamePlayer> createGamePlayers(Game game, List<Player> players) {
-        return players.stream().map(player -> gamePlayerService.create(game, player)).collect(Collectors.toList());
+    private List<GamePlayer> createGamePlayers(Game game, List<String> playerNames) {
+        return playerNames.stream().map(playerName -> gamePlayerService.create(game, playerName))
+                .collect(Collectors.toList());
     }
 
     private boolean canAcceptNewGames() {

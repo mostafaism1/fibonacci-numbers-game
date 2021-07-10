@@ -15,9 +15,10 @@ public class GameToGameResponseMapper implements Function<Game, GameResponse> {
     @Override
     public GameResponse apply(Game g) {
         return g == null ? null
-                : new GameResponse(g.getGameCode(), g.getGamePlayers().stream().map(
-                        gamePlayer -> new PlayerCodeDto(gamePlayer.getPlayer().getName(), gamePlayer.getPlayerCode()))
-                        .collect(Collectors.toList()));
+                : new GameResponse(g.getGameCode(),
+                        g.getGamePlayers().stream().map(
+                                gamePlayer -> new PlayerCodeDto(gamePlayer.getPlayerName(), gamePlayer.getPlayerCode()))
+                                .collect(Collectors.toList()));
     }
 
 }
