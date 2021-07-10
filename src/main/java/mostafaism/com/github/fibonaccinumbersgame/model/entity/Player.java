@@ -32,7 +32,7 @@ public class Player {
     @Size(max = 8, message = "Player name must be less than 9 characters long")
     // Only allow alphanumeric characters.
     @Pattern(regexp = "^[A-Za-z0-9]*$")
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
 
 }
