@@ -2,6 +2,8 @@ package mostafaism.com.github.fibonaccinumbersgame.service;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -10,6 +12,7 @@ import mostafaism.com.github.fibonaccinumbersgame.repository.PlayerRepository;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class DefaultPlayerService implements PlayerService {
 
     private final PlayerRepository playerRepository;

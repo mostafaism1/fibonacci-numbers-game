@@ -2,6 +2,8 @@ package mostafaism.com.github.fibonaccinumbersgame.service;
 
 import java.util.UUID;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -12,6 +14,7 @@ import mostafaism.com.github.fibonaccinumbersgame.repository.GamePlayerRepositor
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class DefaultGamePlayerService implements GamePlayerService {
 
     private final GamePlayerRepository gamePlayerRepository;

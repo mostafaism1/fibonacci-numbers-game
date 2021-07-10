@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -16,6 +18,7 @@ import mostafaism.com.github.fibonaccinumbersgame.repository.GameRepository;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class DefaultGameService implements GameService {
 
     private static final int MAXIMUM_ACTIVE_GAMES = 100;
