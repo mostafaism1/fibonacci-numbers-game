@@ -59,4 +59,10 @@ public class DefaultGameService implements GameService {
         return gameRepository.countByIsEnded(false);
     }
 
+    @Override
+    public boolean deleteGame(UUID gameCode) {
+        gameRepository.deleteByGameCode(gameCode);
+        return true;
+    }
+
 }
