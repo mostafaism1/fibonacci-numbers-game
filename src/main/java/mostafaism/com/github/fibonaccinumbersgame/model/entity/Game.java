@@ -10,7 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 
@@ -41,6 +43,10 @@ public class Game {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "game", cascade = CascadeType.ALL)
     private List<Player> players;
+
+    @OneToOne
+    @JoinColumn(name = "on_turn_player_id")
+    private Player onTurnPlayer;
 
     @Column(name = "is_ended")
     private boolean isEnded;
