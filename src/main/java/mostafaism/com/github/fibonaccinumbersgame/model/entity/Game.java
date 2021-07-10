@@ -1,6 +1,6 @@
 package mostafaism.com.github.fibonaccinumbersgame.model.entity;
 
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -16,10 +16,12 @@ import javax.validation.constraints.Max;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "game")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Game {
@@ -37,7 +39,7 @@ public class Game {
     private int turn;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "game")
-    private Set<GamePlayer> gamePlayers;
+    private List<GamePlayer> gamePlayers;
 
     @Column(name = "is_ended")
     private boolean isEnded;
