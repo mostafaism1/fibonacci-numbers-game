@@ -45,7 +45,7 @@ public class Game {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "game", cascade = CascadeType.ALL)
     private List<Player> players;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "on_turn_player_id")
     private Player onTurnPlayer;
 
