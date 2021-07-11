@@ -20,8 +20,10 @@ import mostafaism.com.github.fibonaccinumbersgame.model.entity.Player;
 import mostafaism.com.github.fibonaccinumbersgame.model.mapper.GameToGameResponseMapper;
 import mostafaism.com.github.fibonaccinumbersgame.model.mapper.PlayerToNextPlayerResponseMapper;
 import mostafaism.com.github.fibonaccinumbersgame.model.request.CreateGameRequest;
+import mostafaism.com.github.fibonaccinumbersgame.model.request.MoveRequest;
 import mostafaism.com.github.fibonaccinumbersgame.model.response.GameResponse;
 import mostafaism.com.github.fibonaccinumbersgame.model.response.NextPlayerResponse;
+import mostafaism.com.github.fibonaccinumbersgame.model.response.PlayerScoreResponse;
 import mostafaism.com.github.fibonaccinumbersgame.service.GameService;
 
 @RestController
@@ -51,6 +53,14 @@ public class GameController {
     public NextPlayerResponse getNextPlayer(@PathVariable(name = "gameCode") UUID gameCode) {
         Player onTurnPlayer = gameService.getOnTurnPlayer(gameCode);
         return playerToNextPlayerResponseMapper.apply(onTurnPlayer);
+    }
+
+    @PostMapping(path = "/{gameCode}/{playerCode}/play")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public PlayerScoreResponse playAMove(@PathVariable(name = "gameCode") UUID gameCode,
+            @PathVariable(name = "playerCode") UUID playerCode, @RequestBody @Valid MoveRequest moveRequest) {
+        int score = gameService.playAMove(gameCode, playerCode, moveRequest);
+        return new PlayerScoreResponse(score);
     }
 
 }
