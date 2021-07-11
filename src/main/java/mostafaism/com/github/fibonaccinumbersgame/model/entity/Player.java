@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
@@ -46,5 +47,9 @@ public class Player {
 
     @Column(name = "player_code")
     private UUID playerCode;
+
+    @PositiveOrZero
+    @Column(name = "score")
+    private int score;
 
 }

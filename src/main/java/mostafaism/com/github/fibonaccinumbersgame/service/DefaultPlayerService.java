@@ -19,7 +19,7 @@ public class DefaultPlayerService implements PlayerService {
     private final PlayerRepository playerRepository;
 
     public Player create(Game game, String playerName) {
-        Player player = Player.builder().playerName(playerName).game(game).playerCode(UUID.randomUUID()).build();
+        Player player = Player.builder().playerName(playerName).game(game).playerCode(UUID.randomUUID()).score(0).build();
         return playerRepository.save(player);
     }
 
