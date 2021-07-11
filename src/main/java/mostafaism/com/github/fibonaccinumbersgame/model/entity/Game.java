@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -47,6 +48,9 @@ public class Game {
     @OneToOne
     @JoinColumn(name = "on_turn_player_id")
     private Player onTurnPlayer;
+
+    @ElementCollection
+    private List<Integer> fibonacciNumbers;
 
     @Column(name = "is_ended")
     private boolean isEnded;
