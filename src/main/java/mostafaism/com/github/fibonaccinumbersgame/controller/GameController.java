@@ -1,5 +1,7 @@
 package mostafaism.com.github.fibonaccinumbersgame.controller;
 
+import java.util.List;
+import java.util.Map.Entry;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -22,6 +24,7 @@ import mostafaism.com.github.fibonaccinumbersgame.model.mapper.PlayerToNextPlaye
 import mostafaism.com.github.fibonaccinumbersgame.model.request.CreateGameRequest;
 import mostafaism.com.github.fibonaccinumbersgame.model.request.MoveRequest;
 import mostafaism.com.github.fibonaccinumbersgame.model.response.GameResponse;
+import mostafaism.com.github.fibonaccinumbersgame.model.response.GameScoreResponse;
 import mostafaism.com.github.fibonaccinumbersgame.model.response.NextPlayerResponse;
 import mostafaism.com.github.fibonaccinumbersgame.model.response.PlayerScoreResponse;
 import mostafaism.com.github.fibonaccinumbersgame.service.GameService;
@@ -46,6 +49,13 @@ public class GameController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void endGame(@PathVariable(name = "gameCode") UUID gameCode) {
         gameService.deleteGame(gameCode);
+    }
+
+    @GetMapping(path = "/{gameCode}/score")
+    @ResponseStatus(code = HttpStatus.OK)
+    public GameScoreResponse getScore(@PathVariable(name = "gameCode") UUID gameCode) {
+        List<Entry<String, Integer>> playerScores = gameService.getPlayerScores(gameCode);
+        return new GameScoreResponse(playerScores);
     }
 
     @GetMapping(path = "/{gameCode}/turn")
