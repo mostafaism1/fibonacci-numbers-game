@@ -2,6 +2,8 @@ package mostafaism.com.github.fibonaccinumbersgame.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -154,6 +156,14 @@ public class DefaultGameService implements GameService {
     private boolean isPerfectSquare(int n) {
         int x = (int) Math.sqrt(n);
         return Math.pow(x, 2) == n;
+    }
+
+    @Override
+    public List<Entry<String, Integer>> getPlayerScores(UUID gameCode) {
+        Game game = getGameByGameCode(gameCode);
+        Set<Entry<String, Integer>> playerScores = game.getPlayers().stream()
+                .collect(Collectors.toMap(Player::getPlayerName, Player::getScore)).entrySet();
+        return new ArrayList<>(playerScores);
     }
 
 }
