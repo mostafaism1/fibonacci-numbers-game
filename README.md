@@ -39,27 +39,27 @@
    2. End a Game
 
       - HTTP Verb: POST
-      - URL: /api/<game-code>/end
+      - URL: /api/{game-code}/end
       - Request Body: Empty
       - Response: Empty
 
    3. Game Score
 
       - HTTP Verb: GET
-      - URL: /api/<game-code>/score
+      - URL: /api/{game-code}/score
       - Request Body: Empty
       - Response: `{"scores": {"player1": <number>, "player2": <number>, "player3": <number>}}`
 
    4. Get On-Turn Player
 
       - HTTP Verb: GET
-      - URL: /api/<game-code>/turn
+      - URL: /api/{game-code}/turn
       - Request Body: Empty
       - Response: `{"next": "player1"}`
 
    5. Play a Move
       - HTTP Verb: POST
-      - URL: /api/<game-code>/<player-code>/play
+      - URL: /api/{game-code}/{player-code}/play
       - Request Body: `{"Numbers": [3, 4, 5]}`
       - Response: `{"player-score": <number>}`
 
