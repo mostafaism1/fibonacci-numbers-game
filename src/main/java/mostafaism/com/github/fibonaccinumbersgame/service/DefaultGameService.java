@@ -96,7 +96,7 @@ public class DefaultGameService implements GameService {
         List<Player> players = game.getPlayers();
         Player onTurnPlayer = game.getOnTurnPlayer();
         int onTurnPlayerIndex = players.indexOf(onTurnPlayer);
-        if (onTurnPlayerIndex == players.size()) {
+        if (onTurnPlayerIndex == players.size() - 1) {
             int turn = game.getTurn();
             if (turn == MAXIMUM_GAME_TURNS) {
                 game.setEnded(true);
